@@ -1,6 +1,5 @@
 function topKFrequent(nums, k) {
   const frequency = Array.from({ length: nums.length + 1 }).map(() => []);
-
   const count = {};
 
   for (let num of nums) {
@@ -16,12 +15,12 @@ function topKFrequent(nums, k) {
   for (let i = frequency.length - 1; i >= 0; i--) {
     for (let num of frequency[i]) {
       output.push(num);
-    }
 
-    if (output.length === k) {
-      return output;
+      if (output.length === k) {
+        return output;
+      }
     }
   }
 }
 
-console.log(topKFrequent([1, 2, 2, 3, 3, 3], 2));
+console.log(topKFrequent([1, 2, 2, 3, 3, 3], 3));

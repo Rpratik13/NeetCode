@@ -3,40 +3,42 @@ function isValidSudoku(board) {
   const cols = new Map();
   const squares = new Map();
 
-  for (let r = 0; r < 9; r++) {
-    for (let c = 0; c < 9; c++) {
-      if (board[r][c] === '.') {
+  for (let row = 0; row < 9; row++) {
+    for (let col = 0; col < 9; col++) {
+      const value = board[row][col];
+
+      if (value === '.') {
         continue;
       }
 
-      const value = board[r][c];
-
-      if (rows.get(r) && rows.get(r).has(value)) {
+      if (rows.has(row) && rows.get(row).has(value)) {
         return false;
       }
 
-      if (cols.get(c) && cols.get(c).has(value)) {
+      if (cols.has(col) && cols.get(col).has(value)) {
         return false;
       }
 
-      const squareKey = `${Math.floor(r / 3)},${Math.floor(c / 3)}`;
+      const squareKey = `(${Math.floor(row / 3)},${Math.floor(col / 3)})`;
 
-      if (squares.get(squareKey) && squares.get(squareKey).has(value)) {
+      if (squares.has(squareKey) && squares.get(squareKey).has(value)) {
         return false;
       }
 
-      if (!rows.has(r)) {
-        rows.set(r, new Set());
+      if (!rows.has(row)) {
+        rows.set(row, new Set());
       }
-      if (!cols.has(c)) {
-        cols.set(c, new Set());
+
+      if (!cols.has(col)) {
+        cols.set(col, new Set());
       }
+
       if (!squares.has(squareKey)) {
         squares.set(squareKey, new Set());
       }
 
-      rows.get(r).add(value);
-      cols.get(c).add(value);
+      rows.get(row).add(value);
+      cols.get(col).add(value);
       squares.get(squareKey).add(value);
     }
   }

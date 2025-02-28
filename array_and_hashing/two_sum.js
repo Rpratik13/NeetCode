@@ -1,14 +1,14 @@
 function twoSum(nums, target) {
-  const map = new Map();
+  const numsMap = new Map();
 
   for (let i = 0; i < nums.length; i++) {
-    const diff = target - nums[i];
+    const value = target - nums[i];
 
-    if (map.has(diff)) {
-      return [map.get(diff), i];
+    if (numsMap.has(value)) {
+      return [numsMap.get(value), i];
     }
 
-    map.set(nums[i], i);
+    numsMap.set(nums[i], i);
   }
 }
 

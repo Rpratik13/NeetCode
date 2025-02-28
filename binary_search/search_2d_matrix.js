@@ -4,24 +4,23 @@ function search(matrix, target) {
 
   let top = 0;
   let bottom = rows - 1;
+  let middle;
 
   while (top <= bottom) {
-    const row = Math.floor((top + bottom) / 2);
+    middle = Math.floor((top + bottom) / 2);
 
-    if (target > matrix[row][cols - 1]) {
-      top = row + 1;
-    } else if (target < matrix[row][0]) {
-      bottom = row - 1;
+    if (target < matrix[middle][0]) {
+      bottom = middle - 1;
+    } else if (target > matrix[middle][cols - 1]) {
+      top = middle + 1;
     } else {
       break;
     }
   }
 
   if (top > bottom) {
-    return false;
+    return -1;
   }
-
-  const row = Math.floor((top + bottom) / 2);
 
   let left = 0;
   let right = cols - 1;
@@ -29,16 +28,16 @@ function search(matrix, target) {
   while (left <= right) {
     const m = Math.floor((left + right) / 2);
 
-    if (target > matrix[row][m]) {
-      left = m + 1;
-    } else if (target < matrix[row][m]) {
+    if (matrix[middle][m] === target) {
+      return [middle, m];
+    } else if (matrix[middle][m] > target) {
       right = m - 1;
     } else {
-      return true;
+      left = m + 1;
     }
   }
 
-  return false;
+  return -1;
 }
 
 console.log(
@@ -48,6 +47,6 @@ console.log(
       [10, 11, 12, 13],
       [14, 20, 30, 40],
     ],
-    15,
+    8,
   ),
 );

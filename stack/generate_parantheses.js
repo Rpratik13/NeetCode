@@ -21,4 +21,4 @@ function generateParenthesis(n) {
   return output;
 }
 
-console.log(generateParenthesis(10));
+console.log(generateParenthesis(2));

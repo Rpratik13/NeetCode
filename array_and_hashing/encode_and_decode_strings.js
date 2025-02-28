@@ -9,25 +9,23 @@ function encode(strs) {
 }
 
 function decode(str) {
+  let i = 0;
+  let j = 0;
+
   const output = [];
 
-  let i = 0;
-
   while (i < str.length) {
-    let j = i;
-
     while (str[j] !== '#') {
       j++;
     }
 
     const length = parseInt(str.substring(i, j));
+    const word = str.substring(j + 1, j + 1 + length);
 
-    i = j + 1;
-    j = i + length;
+    output.push(word);
 
-    output.push(str.substring(i, j));
-
-    i = j;
+    i = j + 1 + length;
+    j = i;
   }
 
   return output;

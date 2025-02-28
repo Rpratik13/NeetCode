@@ -1,5 +1,5 @@
 function largestRectangleArea(heights) {
-  const stack = []; // [index, height]
+  const stack = [];
 
   let maxArea = 0;
 
@@ -25,3 +25,5 @@ function largestRectangleArea(heights) {
 
   return maxArea;
 }
+
+console.log(largestRectangleArea([7, 1, 7, 2, 2, 4])); // 8

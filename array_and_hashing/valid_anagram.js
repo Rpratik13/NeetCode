@@ -6,20 +6,11 @@ function isAnagram(s, t) {
   }
 
   for (let i = 0; i < s.length; i++) {
-    const sChar = s[i];
-    const tChar = t[i];
-
-    charCounter[sChar] = (charCounter[sChar] || 0) + 1;
-    charCounter[tChar] = (charCounter[tChar] || 0) - 1;
+    charCounter[s[i]] = (charCounter[s[i]] || 0) + 1;
+    charCounter[t[i]] = (charCounter[t[i]] || 0) - 1;
   }
 
-  for (let i of Object.keys(charCounter)) {
-    if (charCounter[i] !== 0) {
-      return false;
-    }
-  }
-
-  return true;
+  return Object.values(charCounter).every((value) => value === 0);
 }
 
 console.log(isAnagram('racecar', 'carrace'));

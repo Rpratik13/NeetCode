@@ -1,14 +1,18 @@
+/**
+ *
+ * @param {string} strs
+ */
 function groupAnagrams(strs) {
   const output = {};
 
   for (let str of strs) {
-    const characters = new Array(26).fill(0);
+    const charCount = Array(26).fill(0);
 
-    for (let c of str) {
-      characters[c.charCodeAt(0) - 97] += 1;
+    for (let char of str) {
+      charCount[char.charCodeAt(0) - 97]++;
     }
 
-    const key = characters.join(',');
+    const key = charCount.join(',');
 
     if (!output[key]) {
       output[key] = [];
